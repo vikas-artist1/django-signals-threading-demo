@@ -25,3 +25,24 @@ print("Object created")
 
 # Printing the current thread’s ID
 print("Current thread ID:", threading.get_ident())
+
+Here's a human-readable explanation with bold headings formatted in Markdown for inclusion in your `README.md`:
+
+---
+
+### **Explanation**
+
+In the above code:
+
+- **Django Model Definition:** We define a Django model `MyModel`.
+- **Signal Handler:** We create a signal handler function `my_signal_handler` that is connected to the `post_save` signal of `MyModel`.
+- **Simulating Delay:** Inside the signal handler, we simulate a delay of 2 seconds in task execution using `time.sleep(2)`.
+- **Instance Creation and Thread ID:** After creating an instance of `MyModel`, we print "Object Created" and the thread ID using `threading.get_ident()`.
+
+This setup allows us to compare the thread ID of the main thread with the thread ID of the signal handler.
+
+When we run this code, we'll notice that:
+- Both the main thread and the thread inside the signal handler have the same thread ID, indicating that the signal handler runs in the same thread as the caller (main thread).
+- The print statement "Signal handler finished" is displayed only after a delay of 2 seconds, showing that the signal handler blocks execution until it completes its task.
+
+This confirms that Django signals run synchronously in the same thread as the caller by default.
